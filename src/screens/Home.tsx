@@ -28,7 +28,6 @@ export function Home() {
 
     async function fetchData() {
         try {
-            console.log('Entrou!');
             setLoading(true);
             const response = await api.get('/summary');
             setSummary(response.data);
