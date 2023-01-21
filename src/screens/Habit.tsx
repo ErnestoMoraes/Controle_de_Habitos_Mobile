@@ -6,6 +6,7 @@ import { BackButton } from "../components/BackButton";
 import { ProgressBar } from "../components/ProgressBar";
 import { Checkbox } from "../components/CheckBox";
 import { Loading } from "../components/Loading";
+import { HabitEmpty } from "../components/HabitEmpty";
 import { api } from "../lib/axios";
 import dayjs from "dayjs";
 
@@ -79,7 +80,7 @@ export function Habit() {
                 </Text>
                 <ProgressBar progress={habitsProgress} />
                 <View className="mt-6">
-                    {dayInfo?.possibleHabits &&
+                    {dayInfo?.possibleHabits ?
                         dayInfo?.possibleHabits.map(habit =>
 
                             <Checkbox
@@ -89,6 +90,7 @@ export function Habit() {
                                 onPress={() => handleToggleHabit(habit.id)}
                             />
                         )
+                        : <HabitEmpty />
                     }
                 </View>
             </ScrollView>
