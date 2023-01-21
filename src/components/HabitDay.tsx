@@ -1,4 +1,4 @@
-import { TouchableOpacity, Dimensions, TouchableOpacityProps } from "react-native";
+import { TouchableOpacity, Dimensions, TouchableOpacityProps,  } from "react-native";
 import { generateProgressPercentage } from "../utils/generate-progress-percentage";
 import clsx from "clsx";
 import dayjs from "dayjs";
@@ -29,10 +29,10 @@ export function HabitDay({ amountOfHabit = 0, amountCompleted = 0, date, ...rest
             className={clsx("rounded-lg border-2 m-1", {
                 ["bg-zinc-900 border-zinc-800"] : amountAcconplishedPercentage === 0,
                 ["bg-violet-900 border-violet-700"] : amountAcconplishedPercentage > 0 && amountAcconplishedPercentage < 20,
-                ["bg-violet-800 border-violet-600"] : amountAcconplishedPercentage > 20 && amountAcconplishedPercentage < 40,
-                ["bg-violet-700 border-violet-500"] : amountAcconplishedPercentage > 40 && amountAcconplishedPercentage < 60,
-                ["bg-violet-600 border-violet-500"] : amountAcconplishedPercentage > 60 && amountAcconplishedPercentage < 80,
-                ["bg-violet-500 border-violet-400"] : amountAcconplishedPercentage > 80,
+                ["bg-violet-800 border-violet-600"] : amountAcconplishedPercentage >= 20 && amountAcconplishedPercentage < 40,
+                ["bg-violet-700 border-violet-500"] : amountAcconplishedPercentage >= 40 && amountAcconplishedPercentage < 60,
+                ["bg-violet-600 border-violet-500"] : amountAcconplishedPercentage >= 60 && amountAcconplishedPercentage < 80,
+                ["bg-violet-500 border-violet-400"] : amountAcconplishedPercentage >= 80,
                 ["border-white border-4"]: isCurrentDay,
 
             })}

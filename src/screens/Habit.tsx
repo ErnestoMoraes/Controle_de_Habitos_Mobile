@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { generateProgressPercentage } from "../utils/generate-progress-percentage"; 
+import { generateProgressPercentage } from "../utils/generate-progress-percentage";
 import { Alert, ScrollView, Text, View } from "react-native";
 import { useRoute } from '@react-navigation/native';
 import { BackButton } from "../components/BackButton";
@@ -34,15 +34,20 @@ export function Habit() {
     const isDateInPast = parsedDate.endOf('day').isBefore(new Date());
     const dayOfWeek = parsedDate.format('dddd');
     const dayAndMonth = parsedDate.format('DD/MM');
-    const habitsProgress = dayInfo?.possibleHabits.length 
-    ? generateProgressPercentage(dayInfo.possibleHabits.length, completedHabits.length) 
-    : 0;
+    const habitsProgress = dayInfo?.possibleHabits.length
+        ? generateProgressPercentage(dayInfo.possibleHabits.length, completedHabits.length)
+        : 0;
     async function featchHabits() {
         try {
+            console.log('Featch');
             setLoading(true);
-            const response = await api.get('/day', { params: { date: date } });
+            const response = await api.get('/day', { params: { date } });
             setDayInfo(response.data);
-            setCompletedHabits(response.data.completedHabits);
+
+            console.log(date);
+            console.log(response.data);
+
+            setCompletedHabits(response.data.completedHabits!);
         } catch (error) {
             console.log(error);
             Alert.alert('onPress', 'Não foi posivel carregar as infos dos hábitos.');
@@ -50,17 +55,31 @@ export function Habit() {
             setLoading(false);
         }
     }
-    useEffect(() => {
-        featchHabits()
-    }, []);
-
+    
     async function handleToggleHabit(habitID: string) {
-        if(completedHabits.includes(habitID)) {
-            setCompletedHabits(prevState => prevState.filter(habit => habit !== habitID));
-        } else {
-            setCompletedHabits(prevState => [...prevState, habitID]);
+        try {
+            console.log('Toggle');
+
+            await api.patch(`/habits/${habitID}/toggle`);
+
+            if (completedHabits?.includes(habitID)) {
+                setCompletedHabits(prevState => prevState.filter(habit => habit !== habitID));
+
+                console.log('Toggle Desabilitar!');
+            } else {
+                setCompletedHabits(prevState => [...prevState, habitID]);
+
+                console.log('Toggle Habilitado!');
+            }
+        } catch (error) {
+            console.log(error);
+            Alert.alert('Ops', 'Não foi possivel atualizar o status do hábito.');
         }
     }
+
+    useEffect(() => {
+        featchHabits();
+    }, []);
 
     if (loading) {
         return (
@@ -86,26 +105,28 @@ export function Habit() {
                 <View className={clsx("mt-6", {
                     ['opacity-50']: isDateInPast
                 })}>
-                    {dayInfo?.possibleHabits ?
-                        dayInfo?.possibleHabits.map(habit =>
-
-                            <Checkbox
-                                key={habit.id}
-                                title={habit.title}
-                                checked={completedHabits.includes(habit.id)}
-                                disabled={isDateInPast}
-                                onPress={() => handleToggleHabit(habit.id)}
-                            />
-                        )
-                        : <HabitEmpty />
+                    {
+                        
+                        dayInfo?.possibleHabits ?
+                            dayInfo.possibleHabits?.map(habit => (
+                                <Checkbox
+                                    key={habit.id}
+                                    title={habit.title}
+                                    checked={completedHabits!.includes(habit.id)}
+                                    onPress={() => handleToggleHabit(habit.id)}
+                                    disabled={isDateInPast}
+                                />
+                            ))
+                            :
+                            <HabitEmpty />
                     }
                 </View>
-                
+
                 {
                     isDateInPast && (
-                    <Text className="text-white mt-10 text-center">
-                        Você não pode editar hábitos de uma data passada.
-                    </Text>
+                        <Text className="text-white mt-10 text-center">
+                            Você não pode editar hábitos de uma data passada.
+                        </Text>
                     )
                 }
             </ScrollView>
