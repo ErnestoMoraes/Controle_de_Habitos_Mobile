@@ -1,6 +1,6 @@
 # NLW - Setup
 
-![Aplicativo Mobile](.\assets\imagem.jpeg)
+![Aplicativo Mobile](https://github.com/ErnestoMoraes/mobile/tree/main/assets/imagem.jpeg)
 
 ## Nessa última semana participei de mais um evento da Rocketseat:
 
