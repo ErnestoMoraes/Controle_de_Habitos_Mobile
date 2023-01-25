@@ -1,4 +1,4 @@
-# NLW - [ ] Setup
+# NLW - Setup
 
 ![Aplicativo Mobile](.\assets\imagem.jpeg)
 
