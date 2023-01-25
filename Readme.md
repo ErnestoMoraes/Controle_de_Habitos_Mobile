@@ -25,3 +25,5 @@ Nesse eventos criamos a própria API, uma aplicação web front-end e um app mob
 - [ ] Zod
 
 Entre outras.
+
+## Como Rodaro projeto
