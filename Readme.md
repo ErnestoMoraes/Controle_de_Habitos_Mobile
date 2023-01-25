@@ -27,3 +27,12 @@ Nesse eventos criamos a própria API, uma aplicação web front-end e um app mob
 Entre outras.
 
 ## Como Rodaro projeto
+
+1. Clone o projeto
+``git clone https://github.com/ErnestoMoraes/mobile.git``
+
+2. Execute o ``npm install``
+
+3. Rode ``npx expo start``
+
+4. Não esqueça de rodar o ``Server`` também, ou então não funcionará.
