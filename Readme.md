@@ -1,10 +1,8 @@
-# NLW - Setup
+# NLW - Setup Mobile
 
-![Aplicativo Mobile](https://github.com/ErnestoMoraes/mobile/tree/main/assets/imagem.jpeg)
+<img src="https://github.com/ErnestoMoraes/Controle_de_Habitos_Mobile/blob/main/assets/imagem.jpeg" alt="Alt Text" height=400>
 
-## Nessa última semana participei de mais um evento da Rocketseat:
-
-> O NLW setup
+## Nessa última semana participei de mais um evento da Rocketseat: O NLW setup
 
 Como sempre, a rocket trazendo ótimos conteúdos e atualizados.
 Dessa vez nós desenvolvemos um sistema metas (hábitos). Nele podemos cadastrar nossas metas semanais e cumprindo durante o dia.
@@ -12,17 +10,17 @@ Nesse eventos criamos a própria API, uma aplicação web front-end e um app mob
 
 ### Algumas tecnologias que utilizamos:
 
-- [ ] Nodejs
-- [ ] React e React Native
-- [ ] Typescript
-- [ ] fastify
-- [ ] Prismic
-- [ ] Expo
-- [ ] Vite
-- [ ] tailwindcss
-- [ ] Radix
-- [ ] Day.js
-- [ ] Zod
+-  Nodejs
+-  React e React Native
+-  Typescript
+-  fastify
+-  Prismic
+-  Expo
+-  Vite
+-  tailwindcss
+-  Radix
+-  Day.js
+-  Zod
 
 Entre outras.
 
